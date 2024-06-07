@@ -1,0 +1,20 @@
+/* palheta de cores
+
+COR 1 :#d1e751
+COR 2 :#ffffff
+COR 3 :#000000
+COR 4 :#4dbce9
+COR 5 :#26ade4
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #4dbce9;
+  font-family: sans-serif;
+}
