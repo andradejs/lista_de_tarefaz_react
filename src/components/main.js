@@ -10,6 +10,24 @@ export default class Main extends Component {
     index: -1,
   };
 
+  componentDidMount() {
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+
+    if (!tasks) return;
+
+    this.setState({
+      tasks: tasks,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { tasks } = this.state;
+
+    if (tasks === prevState.tasks) return;
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
   handleChange = (e) => {
     this.setState({
       newTask: e.target.value,
@@ -30,13 +48,13 @@ export default class Main extends Component {
       this.setState({
         tasks: [...newTasks, newTask],
       });
-      return
+      return;
     }
 
     const index = this.state.index;
 
-    const newTasks = [...tasks]
-    newTasks[index] = newTask
+    const newTasks = [...tasks];
+    newTasks[index] = newTask;
 
     this.setState({
       tasks: [...newTasks],
@@ -59,7 +77,7 @@ export default class Main extends Component {
     return (
       <div>
         <div className="main">
-          <h1>Lista de tarefas</h1>
+          <h1>To-do List</h1>
           <form onSubmit={this.handleSubmit} action="#" className="form">
             <input onChange={this.handleChange} type="text" value={newTask} />
             <button type="submit">
